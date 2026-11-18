@@ -87,10 +87,15 @@ def main():
         elif choice == "4":
             try:
                 task_id = int(input("Enter task ID to delete: "))
-                delete_task(task_id)
+                confirm = input("Are you sure you want to delete this task? (y/n): ")
+
+                if confirm.lower() == "y":
+                    delete_task(task_id)
+                else:
+                    print("Deletion cancelled!")
+
             except ValueError:
                 print("Please enter a valid numeric ID!")
-
         elif choice == "5":
             print("Goodbye!")
             break
