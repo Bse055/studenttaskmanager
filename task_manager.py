@@ -4,16 +4,25 @@ next_id = 1
 
 
 # Add a new task
+# Add a new task
 def add_task(title):
     global next_id
 
-    if not title.strip():
+    title = title.strip()
+
+    if not title:
         print("Task title cannot be empty!")
         return
 
+    # Check for duplicate task titles
+    for task in tasks:
+        if task["title"].lower() == title.lower():
+            print("This task already exists!")
+            return
+
     task = {
         "id": next_id,
-        "title": title.strip(),
+        "title": title,
         "completed": False
     }
 
@@ -21,7 +30,6 @@ def add_task(title):
     next_id += 1
 
     print("Task added successfully!")
-
 
 # Display all tasks
 def display_tasks():
