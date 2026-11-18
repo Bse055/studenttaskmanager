@@ -3,6 +3,7 @@ tasks = []
 next_id = 1
 
 
+# Add a new task
 def add_task(title):
     global next_id
 
@@ -22,15 +23,20 @@ def add_task(title):
     print("Task added successfully!")
 
 
+# Display all tasks
 def display_tasks():
     if not tasks:
         print("No tasks available.")
         return
 
+    print("\n===== YOUR TASKS =====")
+
     for task in tasks:
         status = "Completed" if task["completed"] else "Pending"
-
         print(f'{task["id"]}. {task["title"]} - {status}')
+
+
+# Complete a task
 def complete_task(task_id):
     for task in tasks:
         if task["id"] == task_id:
@@ -40,29 +46,58 @@ def complete_task(task_id):
 
     print("Task not found!")
 
+
+# Delete a task
+def delete_task(task_id):
+    for task in tasks:
+        if task["id"] == task_id:
+            tasks.remove(task)
+            print("Task deleted successfully!")
+            return
+
+    print("Task not found!")
+
+
+# Main application
 def main():
     while True:
         print("\n===== STUDENT TASK MANAGER =====")
         print("1. Add Task")
         print("2. Display Tasks")
         print("3. Complete Task")
-        print("4. Exit")
-        
+        print("4. Delete Task")
+        print("5. Exit")
 
         choice = input("Enter your choice: ")
 
         if choice == "1":
             title = input("Enter task title: ").strip()
-            add_task(title)   
+            add_task(title)
 
         elif choice == "2":
             display_tasks()
 
         elif choice == "3":
-            task_id = int(input("Enter task ID to complete: "))
-            complete_task(task_id)
+            try:
+                task_id = int(input("Enter task ID to complete: "))
+                complete_task(task_id)
+            except ValueError:
+                print("Please enter a valid numeric ID!")
 
         elif choice == "4":
+            try:
+                task_id = int(input("Enter task ID to delete: "))
+                confirm = input("Are you sure you want to delete this task? (y/n): ")
+
+                if confirm.lower() == "y":
+                    delete_task(task_id)
+                else:
+                    print("Deletion cancelled!")
+
+            except ValueError:
+                print("Please enter a valid numeric ID!")
+
+        elif choice == "5":
             print("Goodbye!")
             break
 
