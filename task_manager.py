@@ -6,9 +6,13 @@ next_id = 1
 def add_task(title):
     global next_id
 
+    if not title.strip():
+        print("Task title cannot be empty!")
+        return
+
     task = {
         "id": next_id,
-        "title": title,
+        "title": title.strip(),
         "completed": False
     }
 
