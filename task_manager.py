@@ -43,8 +43,8 @@ def main():
         choice = input("Enter your choice: ")
 
         if choice == "1":
-            title = input("Enter task title: ")
-            add_task(title)
+            title = input("Enter task title: ").strip()
+            add_task(title)   
 
         elif choice == "2":
             display_tasks()
