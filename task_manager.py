@@ -41,7 +41,9 @@ def main():
         print("\n===== STUDENT TASK MANAGER =====")
         print("1. Add Task")
         print("2. Display Tasks")
-        print("3. Exit")
+        print("3. Complete Task")
+        print("4. Exit")
+        
 
         choice = input("Enter your choice: ")
 
@@ -53,6 +55,10 @@ def main():
             display_tasks()
 
         elif choice == "3":
+            task_id = int(input("Enter task ID to complete: "))
+            complete_task(task_id)
+
+        elif choice == "4":
             print("Goodbye!")
             break
 
