@@ -27,7 +27,14 @@ def display_tasks():
         status = "Completed" if task["completed"] else "Pending"
 
         print(f'{task["id"]}. {task["title"]} - {status}')
+def complete_task(task_id):
+    for task in tasks:
+        if task["id"] == task_id:
+            task["completed"] = True
+            print("Task marked as completed!")
+            return
 
+    print("Task not found!")
 
 def main():
     while True:
